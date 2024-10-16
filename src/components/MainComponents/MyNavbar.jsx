@@ -21,6 +21,7 @@ function MyNavbar() {
               <Nav.Link as={NavLink} to="/" className='text-light px-5' >Home</Nav.Link>
               <Nav.Link as={NavLink} to="/store" className='text-light px-5'>Store</Nav.Link>
               <Nav.Link as={NavLink} to="/about" className='text-light px-5'>About</Nav.Link>
+              <Nav.Link as={NavLink} to="/contact" className='text-light px-5'>Contact</Nav.Link>
             </Nav>
             <Button onClick={() => setIsCart(prev => !prev)} variant="light" className='position-fixed' style={{width:"100px", right:"40px"}}>
               Cart {totalCartItems}
