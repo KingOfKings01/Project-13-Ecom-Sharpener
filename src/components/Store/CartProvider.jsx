@@ -8,8 +8,8 @@ export default function CartProvider({ children }) {
 
     const addToCart = (product) => {
 
-        // Check if the product is already in the cart
-        const existingProduct = cartProducts.find((product) => product.id === product.id);
+        //Todo: Check if the product is already in the cart
+        const existingProduct = cartProducts.find((prod) => prod.id === product.id);
         
         if (existingProduct) {
             existingProduct.quantity++;
@@ -34,8 +34,10 @@ export default function CartProvider({ children }) {
 
     const removeFromCart = (productId) => {
         setCartProducts(cartProducts.filter((product) => product.id!== productId));
-        setTotalPrice(prev => prev - (cartProducts.find((product) => product.id === productId).price));
-        setTotal(prev => (prev - 1) || 0)
+        const fondProduct = cartProducts.find((product) => product.id === productId)
+        setTotalPrice(prev => prev - (fondProduct.price * fondProduct.quantity));
+        
+        setTotal(prev => prev - fondProduct.quantity);
     }
 
     return (

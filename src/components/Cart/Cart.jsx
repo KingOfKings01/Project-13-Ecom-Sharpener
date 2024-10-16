@@ -3,7 +3,7 @@ import { useContext } from "react";
 import cartContext from "../Store/cartContext";
 
 export default function Cart() {
-    const { cartProducts,totalPrice, removeFromCart } = useContext(cartContext)
+    const { cartProducts, totalPrice, removeFromCart } = useContext(cartContext)
     return (
         <>
             <div className="position-fixed bg-light" style={{ right: "0", top: "55px", padding: "20px", minWidth: "300px", height: "91vh" }}>
@@ -25,7 +25,7 @@ export default function Cart() {
                                         <td>{product.title}</td>
                                         <td>{product.price}</td>
                                         <td>
-                                            <input type="number" value={product.quantity} style={{ width: "30px" }} />
+                                            <input type="text" value={product.quantity} disabled style={{ width: "30px" }} />
                                         </td>
                                         <td>
                                             <Button
@@ -38,13 +38,14 @@ export default function Cart() {
                                 ))}
                             </tbody>
                         </table>
+                        <hr />
+                        <h4 className="text-end">Total: ${totalPrice}</h4>
                         <div className="d-flex justify-content-center">
-                            <h3>Total: ${totalPrice}</h3>
                             <Button variant="info" className="text-light">Purchase</Button>
                         </div>
                     </>
                     :
-                    <p>Cart is empty</p>
+                    <p className="text-center">Cart is empty</p>
                 }
             </div>
         </>
