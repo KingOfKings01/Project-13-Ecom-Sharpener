@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 
-function MyNavbar() {
+function MyNavbar({setIsCart}) {
   return (
     <Navbar expand="lg" className="bg-dark position-fixed w-100">
       <Container>
@@ -14,7 +14,7 @@ function MyNavbar() {
             <Nav.Link href="#link" className='text-light px-5'>Store</Nav.Link>
             <Nav.Link href="#About" className='text-light px-5'>About</Nav.Link>
           </Nav>
-          <Button variant="light" className='position-fixed' style={{width:"100px", right:"40px"}}>Cart {0}</Button>
+          <Button onClick={()=> setIsCart(prev=>!prev)} variant="light" className='position-fixed' style={{width:"100px", right:"40px"}}>Cart {0}</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

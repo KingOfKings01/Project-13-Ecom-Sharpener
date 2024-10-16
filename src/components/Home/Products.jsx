@@ -1,6 +1,5 @@
-import productsArr from '../assets/products';
+import productsArr from '../../assets/products';
 import { Button, Container, Row, Col } from 'react-bootstrap';
-
 
 export default function Products() {
   return (
