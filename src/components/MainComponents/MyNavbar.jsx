@@ -2,8 +2,11 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+import cartContext from '../Store/cartContext';
+import { useContext } from 'react';
 
 function MyNavbar({setIsCart}) {
+  const { totalCartItems } = useContext(cartContext)
   return (
     <Navbar expand="lg" className="bg-dark position-fixed w-100">
       <Container>
@@ -14,7 +17,7 @@ function MyNavbar({setIsCart}) {
             <Nav.Link href="#link" className='text-light px-5'>Store</Nav.Link>
             <Nav.Link href="#About" className='text-light px-5'>About</Nav.Link>
           </Nav>
-          <Button onClick={()=> setIsCart(prev=>!prev)} variant="light" className='position-fixed' style={{width:"100px", right:"40px"}}>Cart {0}</Button>
+          <Button onClick={()=> setIsCart(prev=>!prev)} variant="light" className='position-fixed' style={{width:"100px", right:"40px"}}>Cart {totalCartItems}</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

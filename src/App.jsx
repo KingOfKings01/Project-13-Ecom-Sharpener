@@ -4,15 +4,17 @@ import Footer from './components/MainComponents/Footer';
 import Cart from './components/Cart/Cart';
 import Home from './Pages/Home';
 import { useState } from 'react';
+import CartProvider from './components/Store/cartProvider';
 
 function App() {
-  const [isCart, setIsCart] = useState(true);
+  const [isCart, setIsCart] = useState(false);
   return (
-    <>
+    <CartProvider>
       <MyNavbar setIsCart={setIsCart}/>
-      { isCart ? <Home /> : <Cart /> }
+      <Home />
+      { isCart && <Cart /> }
       <Footer />
-    </>
+    </CartProvider>
   )
 }
 
