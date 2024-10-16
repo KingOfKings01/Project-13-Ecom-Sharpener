@@ -5,6 +5,7 @@ import CartProvider from './components/Store/cartProvider';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from './Pages/About';
 import Layout from './components/Layout/Layout';
+import Store from './Pages/Store';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path='/store' element={<Store />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<h1>Page not found 404</h1>} />
           </Route>
