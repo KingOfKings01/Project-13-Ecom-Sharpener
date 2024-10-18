@@ -1,6 +1,7 @@
 import { useState } from "react";
 import cartContext from "./cartContext";
 
+// eslint-disable-next-line react/prop-types
 export default function CartProvider({ children }) {
     const [cartProducts, setCartProducts] = useState([]);
     const [total, setTotal] = useState(0);
