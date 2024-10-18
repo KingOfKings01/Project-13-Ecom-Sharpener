@@ -1,34 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { authContext } from "./authContext";
 import { checkTokenValidity } from "../../Firebase/authFun";
+import { getAuth, signOut } from "firebase/auth";
+import firebaseApp from "../../Firebase/initialize";
 
 
-// eslint-disable-next-line react/prop-types
+const auth = getAuth(firebaseApp);
+
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
-  
+
+  useEffect(() => {
+    if (token) { 
+      checkTokenValidity(logout);
+    }
+  }, [token]);
+
   const login = (token) => {
     localStorage.setItem('token', token);
     setToken(token);
   };
-  
+
   const logout = (isExpired = true) => {
-    if (isExpired){
+    if (isExpired) {
       localStorage.removeItem('token');
-      setToken("");
-    } 
+      setToken(null);
+      signOut(auth);
+    }
   };
-  
-  checkTokenValidity(logout);
 
   return (
-    <authContext.Provider
-      value={{ token, login, logout }}
-    >
+    <authContext.Provider value={{ token, login, logout }}>
       {children}
     </authContext.Provider>
   );
 };
-
 
 export default AuthProvider;

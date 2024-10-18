@@ -7,12 +7,14 @@ import { useContext, useState } from 'react';
 import Cart from '../Cart/Cart';
 import { NavLink } from "react-router-dom";
 import { authContext } from '../Store/authContext';
+import { Navigate } from 'react-router-dom';
 
 function MyNavbar() {
   const { totalCartItems } = useContext(cartContext);
   const [isCart, setIsCart] = useState(false);
   const { token, logout } = useContext(authContext)
   const [isLogout, isLetLogout] = useState(false);
+
 
   const logoutHandler = () => {
     isLetLogout(true)
@@ -30,15 +32,20 @@ function MyNavbar() {
               <Nav.Link as={NavLink} to="/store" className='text-light px-5'>Store</Nav.Link>
               <Nav.Link as={NavLink} to="/contact" className='text-light px-5'>Contact</Nav.Link>
               <Nav.Link as={NavLink} to="/about" className='text-light px-5'>About</Nav.Link>
+              {!token && 
               <Nav.Link as={NavLink} to="/login" className='text-light px-5'>Login</Nav.Link>
+              }
             </Nav>
             <Button onClick={() => setIsCart(prev => !prev)} variant="light" className='position-fixed' style={{width:"100px", right:"160px", top:"10px"}}>
               Cart {totalCartItems}
             </Button>
-            
-            {/* <Button onClick={logoutHandler} variant="light" className='position-fixed' style={{width:"100px", right:"40px"}}>
+            {token && 
+            <Button onClick={logoutHandler} variant="light" className='position-fixed' style={{width:"100px", right:"40px"}}>
               logout
-            </Button> */}
+            </Button>
+            }
+
+            {isLogout && <Navigate to="/login" replace />}
           </Navbar.Collapse>
         </Container>
         {isCart && <Cart />}

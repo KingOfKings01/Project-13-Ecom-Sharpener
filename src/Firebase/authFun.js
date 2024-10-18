@@ -15,9 +15,6 @@ export async function checkTokenValidity(callback) {
     const idTokenResult = await user.getIdTokenResult();
     const isExpired = new Date().getTime() / 1000 > idTokenResult.expirationTime;
 
-    //Todo: Logout after 5 minutes
-    setTimeout(callback, 5 * 10000)
-
     callback(isExpired)
   }
 
